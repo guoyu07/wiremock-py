@@ -1,0 +1,88 @@
+[
+    {
+        "mapping_name": "非本次测试图表请求直接走原目标服务器",
+        "request": {
+            "urlPattern":"/.*(?!goLiveMedia).*",
+            "method": "ANY"
+        },
+        "response": {
+            "default": {
+                "proxyBaseUrl": "target"
+            }
+        } 
+    },
+    {
+        "mapping_name": "活跃媒体图表请求",
+        "request": {
+            "urlPattern":"/view/openTools/goLiveMedia.action",
+            "method": "POST"
+        },
+        "response": {
+            "默认测试场景": {
+                "proxyBaseUrl": "target"
+            },
+            "后端无响应测试场景": {
+                "fault": "EMPTY_RESPONSE"
+            },
+            "后端返回为空测试场景": {
+                "bodyFileName": {
+                    "json": "活跃媒体图表请求.json"
+                }
+            },
+            "后端只返回1组数据": {
+                "bodyFileName": {
+                    "js": "活跃媒体图表请求.js",
+                    "js_args": "后端只返回1组数据"
+                }
+            },
+            "后端返回50组数据": {
+                "bodyFileName": {
+                    "python": "活跃媒体图表请求.py",
+                    "python_args": "后端返回50组数据"
+                }
+            },
+            "后端返回2组差异大的数据": {
+                "bodyFileName": {
+                    "json": "活跃媒体图表请求-2组数据.json"
+                }
+            }
+        }
+    },
+    {
+        "mapping_name": "信息来源图表请求",
+        "request": {
+            "urlPattern": "/view/openTools/goMediaFrom.action",
+            "method": "POST"
+        },
+        "response": {
+            "默认测试场景": {
+                "proxyBaseUrl": "target"
+            },
+            "后端无响应测试场景": {
+                "fault": "EMPTY_RESPONSE"
+            },
+            "后端返回为空测试场景": {
+                "bodyFileName": {
+                    "json": "信息来源图表请求.json"
+                }
+            },
+            "后端只返回1组数据": {
+                "bodyFileName": {
+                    "js": "信息来源图表请求.js",
+                    "js_args": "后端只返回1组数据"
+                }
+            },
+            "后端返回50组数据": {
+                "bodyFileName": {
+                    "python": "信息来源图表请求.py",
+                    "python_args": "后端返回50组数据"
+                }
+            },
+            "后端返回2组差异大的数据": {
+                "bodyFileName": {
+                    "json": "信息来源图表请求-2组数据.json"
+                }
+            }
+        }
+    }
+]
